@@ -1,33 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Cisto's Stats</title>
+  <meta charset="UTF-8">
+  <title>Stats</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <nav>
-  <a href="index.html">🏠 Home</a> |
-  <a href="stats.html">📊 Stats</a> |
-  <a href="daily.html">📅 Daily</a> |
-  <a href="penalties.html">⚠️ Penalties</a> |
-  <a href="rewards.html">🎁 Rewards</a>
-</nav>
-<hr>
+    <a href="index.html">🏠 Home</a> |
+    <a href="stats.html">📊 Stats</a> |
+    <a href="daily.html">📅 Daily</a> |
+    <a href="missions.html">🎯 Missions</a> |
+    <a href="inventory.html">🎒 Inventory</a> |
+    <a href="rewards.html">🎁 Rewards</a> |
+    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="profile.html">🧍 Profile</a>
+  </nav>
 
-  <h1>🧠 Cisto's Stats</h1>
-<p id="xpDisplay">Current XP: 0</p>
-  <ul><ul>
-  <li>Discipline: 20/100 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜</li>
-  <li>Creativity: 45/100 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜</li>
-  <li>Charisma: 30/100 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜</li>
-  <li>Wisdom: 50/100 🟩🟩🟩🟩🟩⬜⬜⬜⬜⬜</li>
-  <li>Intelligence: 40/100 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜</li>
-  </ul><script>
-  document.addEventListener("DOMContentLoaded", () => {
-    let xp = localStorage.getItem("xp") || 0;
-    document.getElementById("xpDisplay").textContent = `Current XP: ${xp}`;
-  });
-</script>
+  <hr>
 
+  <h1>📊 Cisto's Stats</h1>
+  <p id="xpDisplay">Current XP: 0</p>
+
+  <ul>
+    <li>Discipline: 🟩🟩⬜⬜⬜</li>
+    <li>Creativity: 🟩🟩🟩⬜⬜</li>
+    <li>Charisma: 🟩🟩⬜⬜⬜</li>
+    <li>Wisdom: 🟩🟩🟩🟩⬜</li>
+    <li>Intelligence: 🟩🟩🟩⬜⬜</li>
+  </ul>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const xp = localStorage.getItem("xp") || 0;
+      document.getElementById("xpDisplay").textContent = `Current XP: ${xp}`;
+    });
+  </script>
 </body>
 </html>
