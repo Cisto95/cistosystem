@@ -1,4 +1,4 @@
-/* Base Layout */
+/* === Base Layout === */
 body {
   font-family: 'Segoe UI', sans-serif;
   background-color: #121212;
@@ -11,12 +11,13 @@ body {
   background-attachment: fixed;
 }
 
-/* Navigation Bar */
+/* === Navigation Bar === */
 nav {
   background-color: #1f1f1f;
   padding: 15px;
   border-bottom: 2px solid #00bcd4;
   text-align: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
 
 nav a {
@@ -25,44 +26,67 @@ nav a {
   color: #00bcd4;
   font-weight: bold;
   font-size: 1.1em;
-}
-
-nav a:hover {
-  color: #ffffff;
   text-shadow: 0 0 5px #00bcd4;
 }
 
-/* Headings */
+nav a:hover {
+  color: #00ffff;
+  text-decoration: underline;
+}
+
+/* === Headers === */
 h1 {
   color: #f39c12;
   text-align: center;
-  text-shadow: 0 0 8px #f39c12;
+  text-shadow: 0 0 10px #f39c12;
 }
 
-/* XP + Level Display */
+/* === XP / Level === */
 #xpDisplay, #levelDisplay {
   font-weight: bold;
   color: #00ffcc;
   text-shadow: 0 0 4px #00ffcc;
+  font-size: 1.2em;
 }
 
-/* Lists (Rewards, Stats, Quests) */
+/* === Reward & Penalty Items === */
 ul li {
-  background-color: #1e1e1e;
-  border: 1px solid #333;
+  background-color: rgba(30, 30, 30, 0.8);
   padding: 12px;
-  margin: 12px 0;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
-}
-
-/* Strike-through for locked items */
-ul li[style*="line-through"] {
-  color: #888;
-}
-
-/* Highlighted paragraph (e.g., motivation) */
-p {
-  font-size: 1.05em;
   margin: 10px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  transition: transform 0.2s ease-in-out;
+}
+
+ul li:hover {
+  transform: scale(1.02);
+}
+
+/* === Level-up Message === */
+#levelUpMessage {
+  display: none;
+  color: #00ff99;
+  font-weight: bold;
+  font-size: 1.3em;
+  text-align: center;
+  margin-top: 20px;
+  text-shadow: 0 0 6px #00ff99;
+}
+
+/* === Buttons (optional future) === */
+button {
+  background-color: #00bcd4;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  font-weight: bold;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 0 0 10px #00bcd4;
+}
+
+button:hover {
+  background-color: #00ffff;
+  box-shadow: 0 0 15px #00ffff;
 }
