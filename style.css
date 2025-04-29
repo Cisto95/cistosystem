@@ -1,97 +1,132 @@
-/* ==== Global Body Settings ==== */
+/* === Google Font: Orbitron === */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+
+/* === Base Layout === */
 body {
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #121212;
-  color: #eaeaea;
+  font-family: 'Orbitron', sans-serif;
+  background: linear-gradient(180deg, #050c17, #0a0f1e);
+  color: #c8d6f0;
   margin: 0;
-  padding: 20px;
-  background-image: url('https://images.unsplash.com/photo-1616161615806-fd29274374d5');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  padding: 0;
 }
 
-/* ==== Navigation Bar ==== */
-nav {
-  background-color: #1f1f1f;
-  padding: 12px;
+/* === Glowing Header Title === */
+h1 {
   text-align: center;
-  border-bottom: 2px solid #00bcd4;
+  font-size: 2.8rem;
+  color: #ffa500;
+  text-shadow: 0 0 10px #ff8c00, 0 0 25px #ff8c00;
+  margin-top: 40px;
+}
+
+/* === Navigation Bar === */
+nav {
+  background-color: #0a0f1e;
+  border-bottom: 2px solid #00f2ff55;
+  text-align: center;
+  padding: 12px 0;
+  box-shadow: 0 0 10px #00f2ff33;
 }
 
 nav a {
-  margin: 0 12px;
-  color: #00bcd4;
-  font-weight: bold;
+  margin: 0 16px;
   text-decoration: none;
-  font-size: 1.1em;
-  text-shadow: 0 0 5px #00bcd4;
+  font-weight: bold;
+  font-size: 1.1rem;
+  color: #00f2ff;
+  text-shadow: 0 0 5px #00f2ff99;
+  transition: color 0.2s ease;
 }
 
 nav a:hover {
   color: #ffffff;
+  text-shadow: 0 0 10px #ffffff;
 }
 
-/* ==== Headings ==== */
-h1 {
-  font-size: 2.5em;
-  color: #ffa500;
+/* === Section Titles === */
+h2, h3 {
+  color: #00f2ff;
+  text-shadow: 0 0 6px #00f2ff;
   text-align: center;
-  text-shadow: 0 0 10px #ff8c00, 0 0 15px #ffa500;
 }
 
-/* ==== Level and XP Display ==== */
-#xpDisplay, #levelDisplay {
+/* === XP and Level Display === */
+#xpDisplay,
+#levelDisplay {
+  font-size: 1.2rem;
   font-weight: bold;
-  color: #00ffcc;
-  text-shadow: 0 0 5px #00ffcc;
-  text-align: center;
-}
-
-/* ==== List Items (Inventory, Missions, Quests) ==== */
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-
-li {
-  background-color: rgba(30, 30, 30, 0.8);
   margin: 10px 0;
-  padding: 12px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.7);
-  font-size: 1.05em;
+  color: #ffffff;
+  text-shadow: 0 0 4px #00ffff;
 }
 
-/* ==== Checkbox Scaling ==== */
-input[type="checkbox"] {
-  transform: scale(1.3);
-  margin-right: 10px;
-}
-
-/* ==== Level Up Message ==== */
+/* === Level-Up Message === */
 #levelUpMessage {
-  font-size: 1.3em;
-  font-weight: bold;
-  color: #00ff88;
-  text-shadow: 0 0 5px #00ff88;
+  display: none;
   text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #00ff99;
+  text-shadow: 0 0 8px #00ff99;
   margin-top: 20px;
 }
 
-/* ==== Buttons (if added later) ==== */
+/* === Button Styling === */
 button {
-  background-color: #00bcd4;
-  color: black;
-  border: none;
+  background-color: #1f2937;
+  color: #00f2ff;
+  border: 1px solid #00f2ff;
   padding: 10px 20px;
   font-weight: bold;
-  border-radius: 5px;
+  border-radius: 6px;
+  font-size: 1rem;
   cursor: pointer;
-  box-shadow: 0 0 10px #00bcd4;
+  transition: all 0.2s ease;
+  box-shadow: 0 0 10px #00f2ff44;
 }
 
 button:hover {
-  background-color: #00ffff;
-  box-shadow: 0 0 15px #00ffff;
+  background-color: #00f2ff;
+  color: #0a0f1e;
+  box-shadow: 0 0 20px #00f2ffcc;
+}
+
+/* === List Items === */
+ul {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+li {
+  background: rgba(255, 255, 255, 0.05);
+  margin: 10px 0;
+  padding: 12px 18px;
+  border: 1px solid #1e2a38;
+  border-radius: 8px;
+  color: #c8d6f0;
+  text-shadow: 0 0 3px #00f2ff55;
+  transition: background 0.2s;
+}
+
+li:hover {
+  background: rgba(0, 242, 255, 0.1);
+}
+
+/* === Links in Content === */
+a {
+  color: #00f2ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* === Checkbox Label Styling === */
+input[type="checkbox"] {
+  transform: scale(1.2);
+  margin-right: 8px;
 }
