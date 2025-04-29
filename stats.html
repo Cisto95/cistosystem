@@ -5,12 +5,19 @@
 </head>
 <body>
   <h1>🧠 Cisto's Stats</h1>
+<p id="xpDisplay">Current XP: 0</p>
   <ul><ul>
   <li>Discipline: 20/100 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜</li>
   <li>Creativity: 45/100 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜</li>
   <li>Charisma: 30/100 🟩🟩🟩⬜⬜⬜⬜⬜⬜⬜</li>
   <li>Wisdom: 50/100 🟩🟩🟩🟩🟩⬜⬜⬜⬜⬜</li>
   <li>Intelligence: 40/100 🟩🟩🟩🟩⬜⬜⬜⬜⬜⬜</li>
-  </ul>
+  </ul><script>
+  document.addEventListener("DOMContentLoaded", () => {
+    let xp = localStorage.getItem("xp") || 0;
+    document.getElementById("xpDisplay").textContent = `Current XP: ${xp}`;
+  });
+</script>
+
 </body>
 </html>
