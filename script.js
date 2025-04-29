@@ -13,3 +13,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+function calculateLevel(xp) {
+  return Math.floor(xp / 50) + 1; // 50 XP per level
+}
+
+function updateProfile() {
+  const xp = localStorage.getItem("xp") || 0;
+  const level = calculateLevel(xp);
+  const levelDisplay = document.getElementById("levelDisplay");
+  const xpDisplay = document.getElementById("xpDisplay");
+
+  if (levelDisplay) levelDisplay.textContent = `Level: ${level}`;
+  if (xpDisplay) xpDisplay.textContent = `XP: ${xp}`;
+}
+
+document.addEventListener("DOMContentLoaded", updateProfile);
