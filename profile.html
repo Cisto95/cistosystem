@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Profile</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -9,39 +10,43 @@
     <a href="index.html">🏠 Home</a> |
     <a href="stats.html">📊 Stats</a> |
     <a href="daily.html">📅 Daily</a> |
-    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="missions.html">🎯 Missions</a> |
+    <a href="inventory.html">🎒 Inventory</a> |
     <a href="rewards.html">🎁 Rewards</a> |
-    <a href="profile.html">🧍 View Profile</a>
+    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="profile.html">🧍 Profile</a>
   </nav>
+
   <hr>
-<div id="levelUpMessage" style="display:none; color:green; font-weight:bold;">
-  🎉 Level Up! Keep going!
-</div>
+
+  <div id="levelUpMessage" style="display:none; color:greenyellow; font-weight:bold;">
+    🎉 Level Up! Keep going!
+  </div>
+
   <h1>🧍 Cisto's Profile</h1>
   <p>Name: Cisto</p>
   <p>Rank: Hunter</p>
- <p id="levelDisplay">Level: 1</p>
-<p id="xpDisplay">XP: 0</p>
+  <p id="levelDisplay">Level: 1</p>
+  <p id="xpDisplay">XP: 0</p>
 
- <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const xp = parseInt(localStorage.getItem("xp")) || 0;
-    const level = Math.floor(xp / 50) + 1;
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const xp = parseInt(localStorage.getItem("xp")) || 0;
+      const level = Math.floor(xp / 50) + 1;
 
-    const levelDisplay = document.getElementById("levelDisplay");
-    const xpDisplay = document.getElementById("xpDisplay");
-    const levelUpMessage = document.getElementById("levelUpMessage");
+      const levelDisplay = document.getElementById("levelDisplay");
+      const xpDisplay = document.getElementById("xpDisplay");
+      const levelUpMessage = document.getElementById("levelUpMessage");
 
-    if (levelDisplay) levelDisplay.textContent = `Level: ${level}`;
-    if (xpDisplay) xpDisplay.textContent = `XP: ${xp}`;
+      if (levelDisplay) levelDisplay.textContent = `Level: ${level}`;
+      if (xpDisplay) xpDisplay.textContent = `XP: ${xp}`;
 
-    const lastLevel = parseInt(localStorage.getItem("lastLevel")) || 0;
-    if (level > lastLevel && levelUpMessage) {
-      levelUpMessage.style.display = "block";
-      localStorage.setItem("lastLevel", level);
-    }
-  });
-</script>
-
+      const lastLevel = parseInt(localStorage.getItem("lastLevel")) || 0;
+      if (level > lastLevel && levelUpMessage) {
+        levelUpMessage.style.display = "block";
+        localStorage.setItem("lastLevel", level);
+      }
+    });
+  </script>
 </body>
 </html>
