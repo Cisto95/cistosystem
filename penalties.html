@@ -21,5 +21,22 @@
     <li>🕶️ Shadowban mode: silence + grind</li>
   </ul>
   <p>💀 You failed a quest today. Redemption starts now.</p>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const penalty = localStorage.getItem("penaltyTriggered");
+
+    if (penalty !== "true") {
+      // No penalty triggered – hide content
+      document.body.innerHTML = `
+        <h1>🎉 All Clear!</h1>
+        <p>No penalties today. You're doing great!</p>
+        <a href="index.html">⬅️ Back to Home</a>
+      `;
+    } else {
+      // Reset penalty status for tomorrow
+      localStorage.removeItem("penaltyTriggered");
+    }
+  });
+</script>
 </body>
 </html>
