@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Missions</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html">🏠 Home</a> |
+    <a href="stats.html">📊 Stats</a> |
+    <a href="daily.html">📅 Daily</a> |
+    <a href="missions.html">🎯 Missions</a> |
+    <a href="inventory.html">🎒 Inventory</a> |
+    <a href="rewards.html">🎁 Rewards</a> |
+    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="profile.html">🧍 Profile</a>
+  </nav>
+
+  <hr>
+
+  <h1>🎯 Solo Missions</h1>
+  <ul>
+    <li><input type="checkbox"> Read 3 chapters of a book 📚 (+30 XP)</li>
+    <li><input type="checkbox"> Complete 1 online course module 🎓 (+50 XP)</li>
+    <li><input type="checkbox"> Write a blog/journal entry ✍️ (+25 XP)</li>
+    <li><input type="checkbox"> Go 3 days without sugar 🧁🚫 (+60 XP)</li>
+  </ul>
+
+  <p>📆 Progress tracked manually for now. Auto-tracking soon.</p>
+</body>
+</html>
 
