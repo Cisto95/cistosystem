@@ -1,39 +1,68 @@
+/* Base Layout */
 body {
-  font-family: Arial, sans-serif;
-  margin: 40px;
-  background-color: #f5f5f5;
-  color: #333;
+  font-family: 'Segoe UI', sans-serif;
+  background-color: #121212;
+  color: #eaeaea;
+  margin: 0;
+  padding: 20px;
+  background-image: url('https://images.unsplash.com/photo-1616161615806-fd29274374d5');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
+/* Navigation Bar */
 nav {
-  background-color: #fff;
-  padding: 10px;
-  border-radius: 8px;
-  margin-bottom: 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #1f1f1f;
+  padding: 15px;
+  border-bottom: 2px solid #00bcd4;
+  text-align: center;
 }
 
 nav a {
-  margin: 0 10px;
+  margin: 0 12px;
   text-decoration: none;
-  color: #0077cc;
+  color: #00bcd4;
   font-weight: bold;
+  font-size: 1.1em;
 }
 
 nav a:hover {
-  color: #005299;
-  text-decoration: underline;
+  color: #ffffff;
+  text-shadow: 0 0 5px #00bcd4;
 }
 
+/* Headings */
 h1 {
-  color: #222;
+  color: #f39c12;
+  text-align: center;
+  text-shadow: 0 0 8px #f39c12;
 }
 
-ul {
-  list-style-type: none;
-  padding: 0;
+/* XP + Level Display */
+#xpDisplay, #levelDisplay {
+  font-weight: bold;
+  color: #00ffcc;
+  text-shadow: 0 0 4px #00ffcc;
 }
 
-li {
-  margin: 8px 0;
+/* Lists (Rewards, Stats, Quests) */
+ul li {
+  background-color: #1e1e1e;
+  border: 1px solid #333;
+  padding: 12px;
+  margin: 12px 0;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.6);
+}
+
+/* Strike-through for locked items */
+ul li[style*="line-through"] {
+  color: #888;
+}
+
+/* Highlighted paragraph (e.g., motivation) */
+p {
+  font-size: 1.05em;
+  margin: 10px 0;
 }
