@@ -27,4 +27,25 @@ function updateProfile() {
   if (xpDisplay) xpDisplay.textContent = `XP: ${xp}`;
 }
 
-document.addEventListener("DOMContentLoaded", updateProfile);
+document.addEventListener("DOMContentLoaded", () => {
+  updateProfile();
+  checkMissedQuests();
+});
+function checkMissedQuests() {
+  const checkboxes = document.querySelectorAll("input[type='checkbox']");
+  const lastChecked = localStorage.getItem("lastChecked") || "{}";
+  const lastData = JSON.parse(lastChecked);
+  const today = new Date().toDateString();
+
+  checkboxes.forEach((box, idx) => {
+    const key = `quest-${idx}`;
+    if (lastData[key] !== today && !box.checked) {
+      localStorage.setItem("penaltyTriggered", "true");
+    }
+    if (box.checked) {
+      lastData[key] = today;
+    }
+  });
+
+  localStorage.setItem("lastChecked", JSON.stringify(lastData));
+}
