@@ -23,15 +23,25 @@
  <p id="levelDisplay">Level: 1</p>
 <p id="xpDisplay">XP: 0</p>
 
-  <script>
-   document.addEventListener("DOMContentLoaded", () => {
-  let xp = parseInt(localStorage.getItem("xp")) || 0;
-  let level = Math.floor(xp / 100) + 1;
+ <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const xp = parseInt(localStorage.getItem("xp")) || 0;
+    const level = Math.floor(xp / 50) + 1;
 
-  document.getElementById("xpDisplay").textContent = `XP: ${xp}`;
-  document.getElementById("levelDisplay").textContent = `Level: ${level}`;
-});
+    const levelDisplay = document.getElementById("levelDisplay");
+    const xpDisplay = document.getElementById("xpDisplay");
+    const levelUpMessage = document.getElementById("levelUpMessage");
 
-  </script>
+    if (levelDisplay) levelDisplay.textContent = `Level: ${level}`;
+    if (xpDisplay) xpDisplay.textContent = `XP: ${xp}`;
+
+    const lastLevel = parseInt(localStorage.getItem("lastLevel")) || 0;
+    if (level > lastLevel && levelUpMessage) {
+      levelUpMessage.style.display = "block";
+      localStorage.setItem("lastLevel", level);
+    }
+  });
+</script>
+
 </body>
 </html>
