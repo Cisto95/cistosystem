@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Profile</title>
+</head>
+<body>
+  <h1>🧙‍♂️ Cisto's Profile</h1>
+  <p id="xpDisplay">XP: 0</p>
+  <p id="levelDisplay">Level: 1</p>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      let xp = parseInt(localStorage.getItem("xp")) || 0;
+      let level = Math.floor(xp / 100) + 1;
+      document.getElementById("xpDisplay").textContent = `XP: ${xp}`;
+      document.getElementById("levelDisplay").textContent = `Level: ${level}`;
+    });
+  </script>
+</body>
+</html>
