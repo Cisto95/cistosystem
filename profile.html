@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Profile</title>
+  <title>Profile</title>
 </head>
 <body>
-  <h1>🧙‍♂️ Cisto's Profile</h1>
-  <p id="xpDisplay">XP: 0</p>
-  <p id="levelDisplay">Level: 1</p>
+  <nav>
+    <a href="index.html">🏠 Home</a> |
+    <a href="stats.html">📊 Stats</a> |
+    <a href="daily.html">📅 Daily</a> |
+    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="rewards.html">🎁 Rewards</a> |
+    <a href="profile.html">🧍 View Profile</a>
+  </nav>
+  <hr>
+
+  <h1>🧍 Cisto's Profile</h1>
+  <p>Name: Cisto</p>
+  <p>Rank: Hunter</p>
+  <p>Level: 1</p>
+  <p>XP: <span id="xpDisplay">0</span></p>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      let xp = parseInt(localStorage.getItem("xp")) || 0;
-      let level = Math.floor(xp / 100) + 1;
-      document.getElementById("xpDisplay").textContent = `XP: ${xp}`;
-      document.getElementById("levelDisplay").textContent = `Level: ${level}`;
+      let xp = localStorage.getItem("xp") || 0;
+      document.getElementById("xpDisplay").textContent = xp;
     });
   </script>
 </body>
