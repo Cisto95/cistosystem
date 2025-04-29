@@ -1,18 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Penalty Room</title>
+  <meta charset="UTF-8">
+  <title>Penalties</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body><nav>
-  <a href="index.html">🏠 Home</a> |
-  <a href="stats.html">📊 Stats</a> |
-  <a href="daily.html">📅 Daily</a> |
-  <a href="penalties.html">⚠️ Penalties</a> |
-  <a href="rewards.html">🎁 Rewards</a> |
-  <a href="profile.html">🧍 View Profile</a>
-</nav>
-<hr>
+<body>
+  <nav>
+    <a href="index.html">🏠 Home</a> |
+    <a href="stats.html">📊 Stats</a> |
+    <a href="daily.html">📅 Daily</a> |
+    <a href="missions.html">🎯 Missions</a> |
+    <a href="inventory.html">🎒 Inventory</a> |
+    <a href="rewards.html">🎁 Rewards</a> |
+    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="profile.html">🧍 Profile</a>
+  </nav>
+
+  <hr>
+
   <h1>⚠️ Penalties Activated</h1>
   <ul>
     <li>🚫 No Netflix</li>
@@ -21,22 +27,21 @@
     <li>🕶️ Shadowban mode: silence + grind</li>
   </ul>
   <p>💀 You failed a quest today. Redemption starts now.</p>
-  <script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const penalty = localStorage.getItem("penaltyTriggered");
 
-    if (penalty !== "true") {
-      // No penalty triggered – hide content
-      document.body.innerHTML = `
-        <h1>🎉 All Clear!</h1>
-        <p>No penalties today. You're doing great!</p>
-        <a href="index.html">⬅️ Back to Home</a>
-      `;
-    } else {
-      // Reset penalty status for tomorrow
-      localStorage.removeItem("penaltyTriggered");
-    }
-  });
-</script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const penalty = localStorage.getItem("penaltyTriggered");
+
+      if (penalty !== "true") {
+        document.body.innerHTML = `
+          <h1>🎉 All Clear!</h1>
+          <p>No penalties today. You're doing great!</p>
+          <a href="index.html">🔙 Back to Home</a>
+        `;
+      } else {
+        localStorage.removeItem("penaltyTriggered");
+      }
+    });
+  </script>
 </body>
 </html>
