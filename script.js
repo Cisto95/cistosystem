@@ -1,4 +1,4 @@
-// ========== Core XP and Leveling ==========
+// ========== XP & Level Calculation ==========
 function calculateLevel(xp) {
   return Math.floor(xp / 50) + 1;
 }
@@ -21,7 +21,7 @@ function updateProfile() {
   }
 }
 
-// ========== Daily Quests and Mission XP ==========
+// ========== Checkboxes for Daily & Missions ==========
 function setupCheckboxes() {
   const checkboxes = document.querySelectorAll("input[type='checkbox']");
   let xp = parseInt(localStorage.getItem("xp")) || 0;
@@ -42,7 +42,7 @@ function setupCheckboxes() {
   });
 }
 
-// ========== Penalty Check ==========
+// ========== Penalty System ==========
 function checkMissedQuests() {
   const checkboxes = document.querySelectorAll("input[type='checkbox']");
   const lastChecked = JSON.parse(localStorage.getItem("lastChecked") || "{}");
@@ -61,7 +61,7 @@ function checkMissedQuests() {
   localStorage.setItem("lastChecked", JSON.stringify(lastChecked));
 }
 
-// ========== Main Game Loader ==========
+// ========== Run on Every Page ==========
 document.addEventListener("DOMContentLoaded", () => {
   updateProfile();
   setupCheckboxes();
