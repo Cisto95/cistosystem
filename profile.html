@@ -18,14 +18,18 @@
   <h1>🧍 Cisto's Profile</h1>
   <p>Name: Cisto</p>
   <p>Rank: Hunter</p>
-  <p>Level: 1</p>
-  <p>XP: <span id="xpDisplay">0</span></p>
+ <p id="levelDisplay">Level: 1</p>
+<p id="xpDisplay">XP: 0</p>
 
   <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      let xp = localStorage.getItem("xp") || 0;
-      document.getElementById("xpDisplay").textContent = xp;
-    });
+   document.addEventListener("DOMContentLoaded", () => {
+  let xp = parseInt(localStorage.getItem("xp")) || 0;
+  let level = Math.floor(xp / 100) + 1;
+
+  document.getElementById("xpDisplay").textContent = `XP: ${xp}`;
+  document.getElementById("levelDisplay").textContent = `Level: ${level}`;
+});
+
   </script>
 </body>
 </html>
