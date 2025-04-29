@@ -1,41 +1,49 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Reward Room</title>
+  <meta charset="UTF-8">
+  <title>Rewards</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body><nav>
-  <a href="index.html">🏠 Home</a> |
-  <a href="stats.html">📊 Stats</a> |
-  <a href="daily.html">📅 Daily</a> |
-  <a href="penalties.html">⚠️ Penalties</a> |
-  <a href="rewards.html">🎁 Rewards</a> |
-  <a href="profile.html">🧍 View Profile</a>
-</nav>
-<hr>
-  <h1>🎁 Rewards Unlocked</h1>
-  <ul<ul id="rewardsList">
-  <li data-level="1">✅ 3 Days Streak: Buy a coffee</li>
-<li data-level="2">✅ 7 Days: Watch an episode guilt-free</li>
-<li data-level="3">✅ 14 Days: Gift yourself new drip</li>
-<li data-level="4">✅ 30 Days: Book a date night</li>
-</ul>
+<body>
+  <nav>
+    <a href="index.html">🏠 Home</a> |
+    <a href="stats.html">📊 Stats</a> |
+    <a href="daily.html">📅 Daily</a> |
+    <a href="missions.html">🎯 Missions</a> |
+    <a href="inventory.html">🎒 Inventory</a> |
+    <a href="rewards.html">🎁 Rewards</a> |
+    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="profile.html">🧍 Profile</a>
+  </nav>
+
+  <hr>
+
+  <h1>🎁 Reward Room</h1>
+  <ul id="rewardsList">
+    <li data-level="1">✅ 3 Days Streak: Buy a coffee</li>
+    <li data-level="2">✅ 7 Days: Watch an episode guilt-free</li>
+    <li data-level="3">✅ 14 Days: Gift yourself new drip</li>
+    <li data-level="4">✅ 30 Days: Book a date night</li>
+    <li data-level="5">✅ 60 Days: Upgrade gear (studio/boxing/etc)</li>
   </ul>
-  <p>💡 Keep showing up. Leveling = lifestyle.</p><script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const xp = parseInt(localStorage.getItem("xp")) || 0;
-    const level = Math.floor(xp / 50) + 1;
 
-    const rewards = document.querySelectorAll("#rewardsList li");
-    rewards.forEach(item => {
-      const requiredLevel = parseInt(item.dataset.level);
-      if (level < requiredLevel) {
-        item.style.opacity = "0.3";
-        item.style.textDecoration = "line-through";
-      }
+  <p>🔓 Rewards unlock automatically as you level up!</p>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const xp = parseInt(localStorage.getItem("xp")) || 0;
+      const level = Math.floor(xp / 50) + 1;
+
+      const rewards = document.querySelectorAll("#rewardsList li");
+      rewards.forEach(item => {
+        const requiredLevel = parseInt(item.dataset.level);
+        if (level < requiredLevel) {
+          item.style.opacity = "0.3";
+          item.style.textDecoration = "line-through";
+        }
+      });
     });
-  });
-</script>
-
+  </script>
 </body>
 </html>
