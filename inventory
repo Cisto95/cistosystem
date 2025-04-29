@@ -1,1 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Inventory</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html">🏠 Home</a> |
+    <a href="stats.html">📊 Stats</a> |
+    <a href="daily.html">📅 Daily</a> |
+    <a href="missions.html">🎯 Missions</a> |
+    <a href="inventory.html">🎒 Inventory</a> |
+    <a href="rewards.html">🎁 Rewards</a> |
+    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="profile.html">🧍 Profile</a>
+  </nav>
+
+  <hr>
+
+  <h1>🎒 Inventory</h1>
+  <ul id="inventoryList">
+    <li>Sword of Focus 🗡️</li>
+    <li>Notebook of Clarity 📓</li>
+    <li>Timer Totem ⏱️</li>
+    <li>Shield of Discipline 🛡️</li>
+  </ul>
+
+  <p>🔓 More items unlock as you progress...</p>
+</body>
+</html>
 
