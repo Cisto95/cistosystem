@@ -28,31 +28,35 @@
     <ul class="mission-list">
       <li>
         <label>
-          <input type="checkbox" />
-          <span>Read 3 chapters of a book 📚 <span class="xp">(+30 XP)</span></span>
+          <input type="checkbox">
+          <span>Read 3 chapters of a book 📚</span>
+          <span class="xp">(+30 XP)</span>
         </label>
       </li>
       <li>
         <label>
-          <input type="checkbox" />
-          <span>Complete 1 online course module 🎓 <span class="xp">(+50 XP)</span></span>
+          <input type="checkbox">
+          <span>Complete 1 online course module 🧠</span>
+          <span class="xp">(+50 XP)</span>
         </label>
       </li>
       <li>
         <label>
-          <input type="checkbox" />
-          <span>Write a blog/journal entry ✍️ <span class="xp">(+25 XP)</span></span>
+          <input type="checkbox">
+          <span>Write a blog/journal entry ✍️</span>
+          <span class="xp">(+25 XP)</span>
         </label>
       </li>
       <li>
         <label>
-          <input type="checkbox" />
-          <span>Go 3 days without sugar 🧁🚫 <span class="xp">(+60 XP)</span></span>
+          <input type="checkbox">
+          <span>Go 3 days without sugar 🚫🍰</span>
+          <span class="xp">(+60 XP)</span>
         </label>
       </li>
     </ul>
 
-    <p class="note">📆 Progress tracked manually for now. Auto-tracking soon.</p>
+    <p style="text-align:center;">📆 More tracking features coming soon...</p>
   </div>
 
 </body>
