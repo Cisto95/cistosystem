@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Daily Quests</title>
+  <title>Daily Quests | Cisto System</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <nav>
     <a href="index.html">🏠 Home</a> |
     <a href="stats.html">📊 Stats</a> |
@@ -19,15 +20,63 @@
 
   <hr>
 
-  <h1>📅 Daily Quests</h1>
-  <ul>
-    <li><input type="checkbox"> Morning affirmations (+5 XP)</li>
-    <li><input type="checkbox"> Music practice (30 min) (+10 XP)</li>
-    <li><input type="checkbox"> Workout or boxing (+8 XP)</li>
-    <li><input type="checkbox"> Content creation (1 post) (+7 XP)</li>
-    <li><input type="checkbox"> No social media until 13:00 (+5 XP)</li>
-  </ul>
+  <div class="container">
+    <h1 class="glow">📅 Daily Quests</h1>
+
+    <ul class="mission-list">
+      <li><input type="checkbox"> Morning affirmations <span class="xp">(+5 XP)</span></li>
+      <li><input type="checkbox"> Music practice (30 min) <span class="xp">(+10 XP)</span></li>
+      <li><input type="checkbox"> Workout or boxing <span class="xp">(+8 XP)</span></li>
+      <li><input type="checkbox"> Content creation (1 post) <span class="xp">(+7 XP)</span></li>
+      <li><input type="checkbox"> No social media until 13:00 <span class="xp">(+5 XP)</span></li>
+    </ul>
+
+    <p style="text-align: center;">⚔️ Unchecked tasks will trigger penalties at 23:59...</p>
+  </div>
 
   <script src="script.js"></script>
+
+  <!-- Auto Penalty Script -->
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      const now = new Date();
+      const hour = now.getHours();
+      const minute = now.getMinutes();
+
+      if (hour === 23 && minute === 59) {
+        const listItems = document.querySelectorAll(".mission-list li");
+        let missedTasks = [];
+
+        listItems.forEach((li) => {
+          const checkbox = li.querySelector("input[type='checkbox']");
+          const labelText = li.textContent.trim();
+          if (checkbox && !checkbox.checked) {
+            missedTasks.push(labelText);
+          }
+        });
+
+        if (missedTasks.length > 0) {
+          showPenaltyPopup(missedTasks);
+        }
+      }
+    });
+
+    function showPenaltyPopup(missedTasks) {
+      const popup = document.createElement("div");
+      popup.classList.add("boss-popup");
+      popup.style.backgroundColor = "#1a1a1a";
+      popup.innerHTML = `
+        <h2 style="color: red; text-align: center;">⚠️ Penalty Activated</h2>
+        <p>You failed to complete the following quest(s):</p>
+        <ul style="color: #fff;">
+          ${missedTasks.map(task => `<li>${task}</li>`).join("")}
+        </ul>
+        <p style="color: #ff4d4d; font-weight: bold;">XP loss or penalty applied. Face the consequences.</p>
+      `;
+
+      document.body.appendChild(popup);
+    }
+  </script>
+
 </body>
 </html>
