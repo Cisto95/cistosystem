@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Missions</title>
+  <title>Missions | Cisto System</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="missions">
+
+  <!-- Navigation -->
   <nav>
     <a href="index.html">🏠 Home</a> |
     <a href="stats.html">📊 Stats</a> |
@@ -19,15 +21,39 @@
 
   <hr>
 
-  <h1>🎯 Solo Missions</h1>
-  <ul>
-    <li><input type="checkbox"> Read 3 chapters of a book 📚 (+30 XP)</li>
-    <li><input type="checkbox"> Complete 1 online course module 🎓 (+50 XP)</li>
-    <li><input type="checkbox"> Write a blog/journal entry ✍️ (+25 XP)</li>
-    <li><input type="checkbox"> Go 3 days without sugar 🧁🚫 (+60 XP)</li>
-  </ul>
+  <!-- Page Content -->
+  <div class="container">
+    <h1 class="glow">🎯 Solo Missions</h1>
 
-  <p>📆 Progress tracked manually for now. Auto-tracking soon.</p>
+    <ul class="mission-list">
+      <li>
+        <label>
+          <input type="checkbox" />
+          <span>Read 3 chapters of a book 📚 <span class="xp">(+30 XP)</span></span>
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" />
+          <span>Complete 1 online course module 🎓 <span class="xp">(+50 XP)</span></span>
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" />
+          <span>Write a blog/journal entry ✍️ <span class="xp">(+25 XP)</span></span>
+        </label>
+      </li>
+      <li>
+        <label>
+          <input type="checkbox" />
+          <span>Go 3 days without sugar 🧁🚫 <span class="xp">(+60 XP)</span></span>
+        </label>
+      </li>
+    </ul>
+
+    <p class="note">📆 Progress tracked manually for now. Auto-tracking soon.</p>
+  </div>
+
 </body>
 </html>
-
