@@ -8,6 +8,7 @@ body {
   color: #c8d6f0;
   margin: 0;
   padding: 0;
+  transition: background 0.5s ease, color 0.5s ease;
 }
 
 /* === Glowing Header Title === */
@@ -69,6 +70,16 @@ h2, h3 {
   color: #00ff99;
   text-shadow: 0 0 8px #00ff99;
   margin-top: 20px;
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    text-shadow: 0 0 8px #00ff99;
+  }
+  50% {
+    text-shadow: 0 0 20px #00ff99;
+  }
 }
 
 /* === Button Styling === */
@@ -129,4 +140,105 @@ a:hover {
 input[type="checkbox"] {
   transform: scale(1.2);
   margin-right: 8px;
+}
+
+/* === Inventory Grid === */
+.inventory-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 15px;
+  padding: 20px;
+  max-width: 700px;
+  margin: auto;
+}
+
+.inventory-grid .item {
+  background-color: rgba(0, 242, 255, 0.1);
+  border: 1px solid #00f2ff44;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 0 8px #00f2ff33;
+  transition: transform 0.2s;
+}
+
+.inventory-grid .item:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 12px #00f2ff;
+}
+
+/* === Boss Fight Popup === */
+.boss-popup {
+  display: none;
+  position: fixed;
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -20%);
+  background-color: #1a1a1a;
+  color: #ff4d4d;
+  border: 2px solid #ff4d4d;
+  padding: 30px;
+  z-index: 999;
+  border-radius: 10px;
+  box-shadow: 0 0 20px #ff4d4d;
+  animation: boss-alert 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes boss-alert {
+  from { transform: translate(-50%, -20%) scale(1); }
+  to { transform: translate(-50%, -20%) scale(1.05); }
+}
+
+/* === Skill Tree === */
+.skill-tree {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  padding: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.skill-tree .skill {
+  background-color: #111827;
+  border: 1px solid #00f2ff88;
+  padding: 15px 20px;
+  border-radius: 10px;
+  color: #e0f7ff;
+  text-align: center;
+  transition: all 0.3s;
+  box-shadow: 0 0 6px #00f2ff33;
+}
+
+.skill-tree .skill:hover {
+  background-color: #00f2ff22;
+  box-shadow: 0 0 15px #00f2ff;
+}
+
+/* === Mobile Optimization === */
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  nav a {
+    display: inline-block;
+    margin: 8px 6px;
+    font-size: 0.9rem;
+  }
+
+  .inventory-grid {
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  }
+
+  .skill-tree {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  button {
+    width: 100%;
+    padding: 12px;
+  }
 }
