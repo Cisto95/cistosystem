@@ -34,49 +34,65 @@
     <p style="text-align: center;">⚔️ Unchecked tasks will trigger penalties at 23:59...</p>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Dungeon Modal -->
+  <div id="dungeonPopup" class="modal hidden">
+    <div class="modal-content">
+      <h2>💥 A hidden dungeon has appeared!</h2>
+      <p>Will you face it or ignore it?</p>
+      <button id="faceItBtn">⚔️ Face it</button>
+      <button id="ignoreBtn">🚪 Ignore</button>
+    </div>
+  </div>
 
-  <!-- Auto Penalty Script -->
   <script>
-    window.addEventListener("DOMContentLoaded", () => {
-      const now = new Date();
-      const hour = now.getHours();
-      const minute = now.getMinutes();
-
-      if (hour === 23 && minute === 59) {
-        const listItems = document.querySelectorAll(".mission-list li");
-        let missedTasks = [];
-
-        listItems.forEach((li) => {
-          const checkbox = li.querySelector("input[type='checkbox']");
-          const labelText = li.textContent.trim();
-          if (checkbox && !checkbox.checked) {
-            missedTasks.push(labelText);
-          }
-        });
-
-        if (missedTasks.length > 0) {
-          showPenaltyPopup(missedTasks);
+    // ✅ Sound when checking off
+    document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener('change', () => {
+        if (cb.checked) {
+          const sound = new Audio('Ping sound effect.mp3');
+          sound.play().catch(() => {});
         }
-      }
+      });
     });
 
-    function showPenaltyPopup(missedTasks) {
-      const popup = document.createElement("div");
-      popup.classList.add("boss-popup");
-      popup.style.backgroundColor = "#1a1a1a";
-      popup.innerHTML = `
-        <h2 style="color: red; text-align: center;">⚠️ Penalty Activated</h2>
-        <p>You failed to complete the following quest(s):</p>
-        <ul style="color: #fff;">
-          ${missedTasks.map(task => `<li>${task}</li>`).join("")}
-        </ul>
-        <p style="color: #ff4d4d; font-weight: bold;">XP loss or penalty applied. Face the consequences.</p>
-      `;
+    // ✅ Dungeon popup logic
+    function showDungeonPopup() {
+      const popup = document.getElementById("dungeonPopup");
+      if (!popup) return;
+      popup.classList.remove("hidden");
 
-      document.body.appendChild(popup);
+      document.getElementById("faceItBtn").onclick = () => {
+        popup.classList.add("hidden");
+        alert("⚔️ You faced the dungeon and gained bonus XP!");
+        // Optional: Add XP logic
+      };
+
+      document.getElementById("ignoreBtn").onclick = () => {
+        popup.classList.add("hidden");
+        alert("🚪 You ignored the dungeon.");
+      };
     }
+
+    // ✅ Trigger dungeon after 1–10 mins
+    const delay = Math.random() * 9 * 60 * 1000 + 60 * 1000;
+    setTimeout(showDungeonPopup, delay);
+
+    // ✅ Midnight reset
+    const now = new Date();
+    const midnight = new Date();
+    midnight.setHours(24, 0, 0, 0);
+    const msUntilMidnight = midnight - now;
+
+    setTimeout(() => {
+      document.querySelectorAll('input[type="checkbox"]').forEach(cb => {
+        cb.checked = false;
+      });
+    }, msUntilMidnight);
+
+    // ✅ Penalty check already exists
   </script>
+
+  <script src="script.js"></script>
 
 </body>
 </html>
