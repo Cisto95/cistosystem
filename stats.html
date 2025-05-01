@@ -1,48 +1,79 @@
-<script>
-  const stats = ["discipline", "creativity", "charisma", "wisdom", "intelligence"];
-  const maxBars = 10;
-  const upgradeCost = 10;
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Stats | Cisto System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-  function loadStats() {
-    const container = document.getElementById("statsContainer");
-    container.innerHTML = "";
+  <nav>
+    <a href="index.html">🏠 Home</a> |
+    <a href="stats.html">📊 Stats</a> |
+    <a href="daily.html">📅 Daily</a> |
+    <a href="missions.html">🎯 Missions</a> |
+    <a href="inventory.html">🎒 Inventory</a> |
+    <a href="rewards.html">🎁 Rewards</a> |
+    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="profile.html">🧍 Profile</a>
+  </nav>
 
-    stats.forEach(stat => {
-      const value = parseInt(localStorage.getItem(stat)) || 0;
-      const bar = "🟩".repeat(value) + "⬜".repeat(maxBars - value);
+  <hr>
 
-      const row = document.createElement("div");
-      row.className = "stat-row";
+  <div class="container">
+    <h1 class="glow">📊 Cisto's Stats</h1>
+    <p id="xpDisplay">Current XP: 0</p>
 
-      row.innerHTML = `
-        <div><strong>${stat.charAt(0).toUpperCase() + stat.slice(1)}</strong>: 
-        <span class="bar">${bar}</span></div>
-        <button onclick="upgrade('${stat}')">+ (${upgradeCost} XP)</button>
-      `;
+    <div id="statsContainer"></div>
+  </div>
 
-      container.appendChild(row);
-    });
+  <script>
+    const stats = ["discipline", "creativity", "charisma", "wisdom", "intelligence"];
+    const maxBars = 10;
+    const upgradeCost = 10;
 
-    const xp = localStorage.getItem("xp") || 0;
-    document.getElementById("xpDisplay").textContent = `Current XP: ${xp}`;
-  }
+    function loadStats() {
+      const container = document.getElementById("statsContainer");
+      container.innerHTML = "";
 
-  function upgrade(stat) {
-    let currentXP = parseInt(localStorage.getItem("xp")) || 0;
-    if (currentXP < upgradeCost) {
-      alert("Not enough XP! Complete quests to earn more.");
-      return;
+      stats.forEach(stat => {
+        const value = parseInt(localStorage.getItem(stat)) || 0;
+        const bar = "🟩".repeat(value) + "⬜".repeat(maxBars - value);
+
+        const row = document.createElement("div");
+        row.className = "stat-row";
+        row.innerHTML = `
+          <div><strong>${stat.charAt(0).toUpperCase() + stat.slice(1)}</strong>: 
+          <span class="bar">${bar}</span></div>
+          <button onclick="upgrade('${stat}')">+ (${upgradeCost} XP)</button>
+        `;
+
+        container.appendChild(row);
+      });
+
+      const xp = localStorage.getItem("xp") || 0;
+      document.getElementById("xpDisplay").textContent = `Current XP: ${xp}`;
     }
 
-    let val = parseInt(localStorage.getItem(stat)) || 0;
-    if (val < maxBars) {
-      val += 1;
-      localStorage.setItem(stat, val);
-      localStorage.setItem("xp", currentXP - upgradeCost);
+    function upgrade(stat) {
+      let currentXP = parseInt(localStorage.getItem("xp")) || 0;
+      if (currentXP < upgradeCost) {
+        alert("Not enough XP! Complete quests to earn more.");
+        return;
+      }
+
+      let val = parseInt(localStorage.getItem(stat)) || 0;
+      if (val < maxBars) {
+        val += 1;
+        localStorage.setItem(stat, val);
+        localStorage.setItem("xp", currentXP - upgradeCost);
+      }
+
+      loadStats();
     }
 
-    loadStats();
-  }
+    document.addEventListener("DOMContentLoaded", loadStats);
+  </script>
 
-  document.addEventListener("DOMContentLoaded", loadStats);
-</script>
+</body>
+</html>
