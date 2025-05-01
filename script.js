@@ -28,7 +28,7 @@ function setupCheckboxes() {
   checkboxes.forEach(checkbox => {
     checkbox.addEventListener("change", () => {
       if (checkbox.checked) {
-        const audio = new Audio("Ping sound effect.mp3");
+        const audio = new Audio("Ping sound effect.mp3"); // Replace with correct file name
         audio.play().catch(() => {});
       }
     });
@@ -68,13 +68,34 @@ function scheduleAutoReset() {
   }, timeUntil);
 }
 
-// ===== Random Dungeon Pop-up =====
+// ===== Random Dungeon Pop-up with Buttons =====
 function spawnDungeonEvent() {
-  const delay = Math.random() * 600000 + 60000; // Between 1 and 11 mins
+  const delay = Math.random() * 600000 + 60000; // 1–11 mins
   setTimeout(() => {
-    alert("💥 A hidden dungeon has appeared! Face it or ignore?");
+    const popup = document.getElementById("dungeonPopup");
+    if (!popup) return;
+    popup.classList.remove("hidden");
+
     const dungeonAudio = new Audio("dungeon.mp3");
     dungeonAudio.play().catch(() => {});
+
+    const faceBtn = document.getElementById("faceItBtn");
+    const ignoreBtn = document.getElementById("ignoreBtn");
+
+    if (faceBtn) {
+      faceBtn.onclick = () => {
+        popup.classList.add("hidden");
+        alert("⚔️ You faced the dungeon! XP reward coming soon...");
+        // Optional: Add XP bonus logic
+      };
+    }
+
+    if (ignoreBtn) {
+      ignoreBtn.onclick = () => {
+        popup.classList.add("hidden");
+        alert("🚪 You ignored the dungeon.");
+      };
+    }
   }, delay);
 }
 
