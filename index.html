@@ -20,21 +20,47 @@
 
   <hr>
 
-  <h1 class="glow">Cisto's Leveling System </h1>
+  <h1 class="glow">Cisto's Leveling System</h1>
   <p>This is your starting point. More features coming soon.</p>
 
   <p><a href="stats.html">➡️ View My Stats</a></p>
   <p><a href="daily.html">📅 View Daily Quests</a></p>
   <p><a href="missions.html">🎯 View Missions</a></p>
   <p><a href="inventory.html">🎒 View Inventory</a></p>
-  <div id="dungeonPopup" class="modal hidden">
-  <div class="modal-content">
-    <h2>💥 A hidden dungeon has appeared!</h2>
-    <p>Will you face it or ignore it?</p>
-    <button id="faceItBtn">⚔️ Face it</button>
-    <button id="ignoreBtn">🚪 Ignore</button>
-  </div>
-</div>
 
+  <!-- Dungeon Modal -->
+  <div id="dungeonPopup" class="modal hidden">
+    <div class="modal-content">
+      <h2>💥 A hidden dungeon has appeared!</h2>
+      <p>Will you face it or ignore it?</p>
+      <button id="faceItBtn">⚔️ Face it</button>
+      <button id="ignoreBtn">🚪 Ignore</button>
+    </div>
+  </div>
+
+  <script>
+    // ✅ Dungeon popup logic
+    function showDungeonPopup() {
+      const popup = document.getElementById("dungeonPopup");
+      if (!popup) return;
+      popup.classList.remove("hidden");
+
+      document.getElementById("faceItBtn").onclick = () => {
+        popup.classList.add("hidden");
+        alert("⚔️ You entered the dungeon!");
+      };
+
+      document.getElementById("ignoreBtn").onclick = () => {
+        popup.classList.add("hidden");
+        alert("🚪 You ignored the dungeon.");
+      };
+    }
+
+    // ✅ Trigger dungeon after 1–10 mins
+    const delay = Math.random() * 9 * 60 * 1000 + 60 * 1000;
+    setTimeout(showDungeonPopup, delay);
+  </script>
+
+  <script src="script.js"></script>
 </body>
 </html>
