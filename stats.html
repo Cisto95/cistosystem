@@ -1,40 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Stats</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <nav>
-    <a href="index.html">🏠 Home</a> |
-    <a href="stats.html">📊 Stats</a> |
-    <a href="daily.html">📅 Daily</a> |
-    <a href="missions.html">🎯 Missions</a> |
-    <a href="inventory.html">🎒 Inventory</a> |
-    <a href="rewards.html">🎁 Rewards</a> |
-    <a href="penalties.html">⚠️ Penalties</a> |
-    <a href="profile.html">🧍 Profile</a>
-  </nav>
+<script>
+  const stats = ["discipline", "creativity", "charisma", "wisdom", "intelligence"];
+  const maxBars = 10;
+  const upgradeCost = 10;
 
-  <hr>
+  function loadStats() {
+    const container = document.getElementById("statsContainer");
+    container.innerHTML = "";
 
-  <h1>📊 Cisto's Stats</h1>
-  <p id="xpDisplay">Current XP: 0</p>
+    stats.forEach(stat => {
+      const value = parseInt(localStorage.getItem(stat)) || 0;
+      const bar = "🟩".repeat(value) + "⬜".repeat(maxBars - value);
 
-  <ul>
-    <li>Discipline: 🟩🟩⬜⬜⬜</li>
-    <li>Creativity: 🟩🟩🟩⬜⬜</li>
-    <li>Charisma: 🟩🟩⬜⬜⬜</li>
-    <li>Wisdom: 🟩🟩🟩🟩⬜</li>
-    <li>Intelligence: 🟩🟩🟩⬜⬜</li>
-  </ul>
+      const row = document.createElement("div");
+      row.className = "stat-row";
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const xp = localStorage.getItem("xp") || 0;
-      document.getElementById("xpDisplay").textContent = `Current XP: ${xp}`;
+      row.innerHTML = `
+        <div><strong>${stat.charAt(0).toUpperCase() + stat.slice(1)}</strong>: 
+        <span class="bar">${bar}</span></div>
+        <button onclick="upgrade('${stat}')">+ (${upgradeCost} XP)</button>
+      `;
+
+      container.appendChild(row);
     });
-  </script>
-</body>
-</html>
+
+    const xp = localStorage.getItem("xp") || 0;
+    document.getElementById("xpDisplay").textContent = `Current XP: ${xp}`;
+  }
+
+  function upgrade(stat) {
+    let currentXP = parseInt(localStorage.getItem("xp")) || 0;
+    if (currentXP < upgradeCost) {
+      alert("Not enough XP! Complete quests to earn more.");
+      return;
+    }
+
+    let val = parseInt(localStorage.getItem(stat)) || 0;
+    if (val < maxBars) {
+      val += 1;
+      localStorage.setItem(stat, val);
+      localStorage.setItem("xp", currentXP - upgradeCost);
+    }
+
+    loadStats();
+  }
+
+  document.addEventListener("DOMContentLoaded", loadStats);
+</script>
