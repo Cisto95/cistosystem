@@ -1,29 +1,32 @@
+/* === Google Font: Orbitron === */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
+/* === Base Layout === */
 body {
   font-family: 'Orbitron', sans-serif;
-  background: url('smoke-dark-bg.png') no-repeat center center fixed;
-  background-size: cover;
-  color: #8ccaff;
+  background: linear-gradient(180deg, #050c17, #0a0f1e);
+  color: #c8d6f0;
   margin: 0;
   padding: 0;
   transition: background 0.5s ease, color 0.5s ease;
 }
 
+/* === Glowing Header Title === */
 h1 {
   text-align: center;
   font-size: 2.8rem;
-  color: #ffb400;
-  text-shadow: 0 0 12px #ffb400, 0 0 32px #ffb400;
+  color: #ffa500;
+  text-shadow: 0 0 10px #ff8c00, 0 0 25px #ff8c00;
   margin-top: 40px;
 }
 
+/* === Navigation Bar === */
 nav {
   background-color: #0a0f1e;
-  border-bottom: 2px solid #0077ff55;
+  border-bottom: 2px solid #00f2ff55;
   text-align: center;
   padding: 12px 0;
-  box-shadow: 0 0 10px #0077ff33;
+  box-shadow: 0 0 10px #00f2ff33;
 }
 
 nav a {
@@ -31,8 +34,8 @@ nav a {
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1rem;
-  color: #00aaff;
-  text-shadow: 0 0 6px #00aaff;
+  color: #00f2ff;
+  text-shadow: 0 0 5px #00f2ff99;
   transition: color 0.2s ease;
 }
 
@@ -41,60 +44,65 @@ nav a:hover {
   text-shadow: 0 0 10px #ffffff;
 }
 
+/* === Section Titles === */
 h2, h3 {
-  color: #00aaff;
-  text-shadow: 0 0 6px #00aaff;
+  color: #00f2ff;
+  text-shadow: 0 0 6px #00f2ff;
   text-align: center;
 }
 
+/* === XP and Level Display === */
 #xpDisplay,
 #levelDisplay {
   font-size: 1.2rem;
   font-weight: bold;
   margin: 10px 0;
   color: #ffffff;
-  text-shadow: 0 0 4px #00aaff;
+  text-shadow: 0 0 4px #00ffff;
 }
 
+/* === Level-Up Message === */
 #levelUpMessage {
   display: none;
   text-align: center;
   font-size: 1.4rem;
   font-weight: bold;
-  color: #00ffcc;
-  text-shadow: 0 0 8px #00ffcc;
+  color: #00ff99;
+  text-shadow: 0 0 8px #00ff99;
   margin-top: 20px;
   animation: pulse-glow 2s infinite;
 }
 
 @keyframes pulse-glow {
   0%, 100% {
-    text-shadow: 0 0 8px #00ffcc;
+    text-shadow: 0 0 8px #00ff99;
   }
   50% {
-    text-shadow: 0 0 20px #00ffcc;
+    text-shadow: 0 0 20px #00ff99;
   }
 }
 
+/* === Button Styling === */
 button {
   background-color: #1f2937;
-  color: #00aaff;
-  border: 1px solid #00aaff;
+  color: #00f2ff;
+  border: 1px solid #00f2ff;
   padding: 10px 20px;
   font-weight: bold;
   border-radius: 6px;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.2s ease;
-  box-shadow: 0 0 10px #00aaff55;
+  box-shadow: 0 0 10px #00f2ff44;
 }
 
 button:hover {
-  background-color: #00aaff;
+  background-color: #00f2ff;
   color: #0a0f1e;
-  box-shadow: 0 0 20px #00aaffcc;
+  box-shadow: 0 0 20px #00f2ffcc;
 }
 
+/* === List Items === */
 ul {
   list-style: none;
   padding: 0;
@@ -109,16 +117,17 @@ li {
   border: 1px solid #1e2a38;
   border-radius: 8px;
   color: #c8d6f0;
-  text-shadow: 0 0 3px #00aaff55;
+  text-shadow: 0 0 3px #00f2ff55;
   transition: background 0.2s;
 }
 
 li:hover {
-  background: rgba(0, 170, 255, 0.1);
+  background: rgba(0, 242, 255, 0.1);
 }
 
+/* === Links in Content === */
 a {
-  color: #00aaff;
+  color: #00f2ff;
   text-decoration: none;
   font-weight: bold;
 }
@@ -127,24 +136,21 @@ a:hover {
   text-decoration: underline;
 }
 
+/* === Checkbox Styling === */
 input[type="checkbox"] {
   transform: scale(1.2);
   margin-right: 8px;
-  accent-color: #00aaff;
-  cursor: pointer;
-  transition: transform 0.2s ease;
 }
 
-input[type="checkbox"]:hover {
-  transform: scale(1.4);
-}
-
-input[type="checkbox"]:checked + span {
+/* === XP Badge === */
+.xp {
   color: #00ffcc;
-  text-decoration: line-through;
-  transition: 0.3s ease;
+  font-weight: bold;
+  text-shadow: 0 0 6px #00ffcc;
+  margin-left: 6px;
 }
 
+/* === Inventory Grid === */
 .inventory-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
@@ -155,41 +161,21 @@ input[type="checkbox"]:checked + span {
 }
 
 .inventory-grid .item {
-  background-color: rgba(0, 170, 255, 0.08);
-  border: 1px solid #00aaff44;
+  background-color: rgba(0, 242, 255, 0.1);
+  border: 1px solid #00f2ff44;
   padding: 12px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 0 8px #00aaff33;
+  box-shadow: 0 0 8px #00f2ff33;
   transition: transform 0.2s;
 }
 
 .inventory-grid .item:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 12px #00aaff;
+  box-shadow: 0 0 12px #00f2ff;
 }
 
-.boss-popup {
-  display: none;
-  position: fixed;
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -20%);
-  background-color: #121212;
-  color: #ff4d4d;
-  border: 2px solid #ff4d4d;
-  padding: 30px;
-  z-index: 999;
-  border-radius: 10px;
-  box-shadow: 0 0 20px #ff4d4d;
-  animation: boss-alert 1.5s ease-in-out infinite alternate;
-}
-
-@keyframes boss-alert {
-  from { transform: translate(-50%, -20%) scale(1); }
-  to { transform: translate(-50%, -20%) scale(1.05); }
-}
-
+/* === Skill Tree === */
 .skill-tree {
   display: flex;
   flex-wrap: wrap;
@@ -202,20 +188,66 @@ input[type="checkbox"]:checked + span {
 
 .skill-tree .skill {
   background-color: #111827;
-  border: 1px solid #00aaff88;
+  border: 1px solid #00f2ff88;
   padding: 15px 20px;
   border-radius: 10px;
   color: #e0f7ff;
   text-align: center;
   transition: all 0.3s;
-  box-shadow: 0 0 6px #00aaff33;
+  box-shadow: 0 0 6px #00f2ff33;
 }
 
 .skill-tree .skill:hover {
-  background-color: #00aaff22;
-  box-shadow: 0 0 15px #00aaff;
+  background-color: #00f2ff22;
+  box-shadow: 0 0 15px #00f2ff;
 }
 
+/* === Dungeon Popup Modal === */
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal.hidden {
+  display: none;
+}
+
+.modal-content {
+  background-color: #111827;
+  border: 2px solid #00f2ff;
+  border-radius: 12px;
+  padding: 30px;
+  text-align: center;
+  box-shadow: 0 0 20px #00f2ff;
+  color: #c8d6f0;
+}
+
+/* === Modal Buttons === */
+.modal-content button {
+  background: #00f2ff;
+  color: #0a0f1e;
+  border: none;
+  margin: 10px;
+  padding: 12px 24px;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.modal-content button:hover {
+  background: #00c6d9;
+}
+
+/* === Mobile Optimization === */
 @media screen and (max-width: 768px) {
   h1 {
     font-size: 2rem;
