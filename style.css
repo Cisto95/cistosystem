@@ -1,10 +1,11 @@
 /* === Google Font: Orbitron === */
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
 
-/* === Base Layout === */
+/* === Base Layout with Smoke Background === */
 body {
   font-family: 'Orbitron', sans-serif;
-  background: linear-gradient(180deg, #050c17, #0a0f1e);
+  background: url("smoke-dark-bg.png") no-repeat center center fixed;
+  background-size: cover;
   color: #c8d6f0;
   margin: 0;
   padding: 0;
