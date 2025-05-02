@@ -90,7 +90,7 @@ function scheduleAutoReset() {
 
 // ===== Random Dungeon Pop-up with Buttons =====
 function spawnDungeonEvent() {
-  const delay = Math.random() * 600000 + 60000; // 1–11 mins
+  const delay = Math.random() * 600000 + 60000;
   setTimeout(() => {
     const popup = document.getElementById("dungeonPopup");
     if (!popup) return;
@@ -106,7 +106,6 @@ function spawnDungeonEvent() {
       faceBtn.onclick = () => {
         popup.classList.add("hidden");
         alert("⚔️ You faced the dungeon! XP reward coming soon...");
-        // Optional: Add XP bonus logic here
       };
     }
 
@@ -119,6 +118,29 @@ function spawnDungeonEvent() {
   }, delay);
 }
 
+// ===== Inventory Equip Logic =====
+function setupInventoryPage() {
+  const inventoryItems = document.querySelectorAll("#inventoryList li");
+  const equipped = JSON.parse(localStorage.getItem("equippedItems") || "[]");
+
+  inventoryItems.forEach(item => {
+    const itemName = item.textContent.trim();
+    if (equipped.includes(itemName)) item.classList.add("equipped");
+
+    item.addEventListener("click", () => {
+      const index = equipped.indexOf(itemName);
+      if (index > -1) {
+        equipped.splice(index, 1);
+        item.classList.remove("equipped");
+      } else {
+        equipped.push(itemName);
+        item.classList.add("equipped");
+      }
+      localStorage.setItem("equippedItems", JSON.stringify(equipped));
+    });
+  });
+}
+
 // ===== Init on Load =====
 document.addEventListener("DOMContentLoaded", () => {
   setupCheckboxes();
@@ -126,4 +148,5 @@ document.addEventListener("DOMContentLoaded", () => {
   schedulePenaltyCheck();
   scheduleAutoReset();
   spawnDungeonEvent();
+  setupInventoryPage(); // ✅ Only runs if inventory page exists
 });
