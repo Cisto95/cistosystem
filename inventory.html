@@ -2,10 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Inventory</title>
-<link rel="stylesheet" href="style.css">
+  <title>Inventory | Cisto System</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <nav>
     <a href="index.html">🏠 Home</a> |
     <a href="stats.html">📊 Stats</a> |
@@ -19,15 +20,53 @@
 
   <hr>
 
-  <h1>🎒 Inventory</h1>
-  <ul id="inventoryList">
-    <li>Sword of Focus 🗡️</li>
-    <li>Notebook of Clarity 📓</li>
-    <li>Timer Totem ⏱️</li>
-    <li>Shield of Discipline 🛡️</li>
-  </ul>
+  <h1 class="glow">🎒 Inventory</h1>
 
-  <p>🔓 More items unlock as you progress...</p>
+  <div class="inventory-grid" id="inventoryGrid"></div>
+
+  <p style="text-align: center; margin-top: 20px;">🔓 More items unlock as you progress...</p>
+
+  <script>
+    const inventory = JSON.parse(localStorage.getItem("inventory")) || [
+      "Sword of Focus",
+      "Notebook of Clarity",
+      "Timer Totem",
+      "Shield of Discipline"
+    ];
+
+    const equippedItem = localStorage.getItem("equipped") || "";
+
+    const itemDescriptions = {
+      "Sword of Focus": "Boosts XP gain on task completion (+2 XP).",
+      "Notebook of Clarity": "Improves wisdom tasks.",
+      "Timer Totem": "Improves time management XP rewards.",
+      "Shield of Discipline": "Reduces XP penalty from missed tasks."
+    };
+
+    const grid = document.getElementById("inventoryGrid");
+    inventory.forEach(item => {
+      const div = document.createElement("div");
+      div.classList.add("item");
+      if (item === equippedItem) div.classList.add("equipped");
+
+      const name = document.createElement("div");
+      name.textContent = item;
+      name.title = itemDescriptions[item] || "";
+
+      const btn = document.createElement("button");
+      btn.textContent = item === equippedItem ? "Equipped ✅" : "Equip";
+      btn.disabled = item === equippedItem;
+
+      btn.addEventListener("click", () => {
+        localStorage.setItem("equipped", item);
+        location.reload(); // refresh to update styles/buttons
+      });
+
+      div.appendChild(name);
+      div.appendChild(btn);
+      grid.appendChild(div);
+    });
+  </script>
+
 </body>
 </html>
-
