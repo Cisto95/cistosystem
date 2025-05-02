@@ -3,6 +3,12 @@ function calculateLevel(xp) {
   return Math.floor(xp / 50) + 1;
 }
 
+// ===== Inventory Checker =====
+function hasItem(itemName) {
+  const inventory = JSON.parse(localStorage.getItem("inventory")) || [];
+  return inventory.includes(itemName);
+}
+
 // ===== XP and Level Display Update =====
 function updateProfile() {
   const xp = parseInt(localStorage.getItem("xp")) || 0;
@@ -22,13 +28,26 @@ function updateProfile() {
   }
 }
 
-// ===== Daily Quest Checkbox Setup with Sound =====
+// ===== Daily Quest Checkbox Setup with Sound & XP + Save State =====
 function setupCheckboxes() {
   const checkboxes = document.querySelectorAll("input[type='checkbox']");
-  checkboxes.forEach(checkbox => {
+  const savedStates = JSON.parse(localStorage.getItem("checkboxStates") || "{}");
+
+  checkboxes.forEach((checkbox, index) => {
+    checkbox.checked = savedStates[index] || false;
+
     checkbox.addEventListener("change", () => {
+      savedStates[index] = checkbox.checked;
+      localStorage.setItem("checkboxStates", JSON.stringify(savedStates));
+
       if (checkbox.checked) {
-        const audio = new Audio("Ping sound effect.mp3"); // Replace with correct file name
+        let xp = parseInt(localStorage.getItem("xp")) || 0;
+        xp += 5;
+        if (hasItem("Sword of Focus")) xp += 2;
+        localStorage.setItem("xp", xp);
+        updateProfile();
+
+        const audio = new Audio("Ping sound effect.mp3");
         audio.play().catch(() => {});
       }
     });
@@ -54,7 +73,7 @@ function schedulePenaltyCheck() {
   }, timeUntil);
 }
 
-// ===== Auto Reset Checkboxes at Midnight =====
+// ===== Auto Reset Checkboxes & State at Midnight =====
 function scheduleAutoReset() {
   const now = new Date();
   const target = new Date();
@@ -65,6 +84,7 @@ function scheduleAutoReset() {
   setTimeout(() => {
     const checkboxes = document.querySelectorAll("input[type='checkbox']");
     checkboxes.forEach(cb => cb.checked = false);
+    localStorage.removeItem("checkboxStates");
   }, timeUntil);
 }
 
@@ -86,7 +106,7 @@ function spawnDungeonEvent() {
       faceBtn.onclick = () => {
         popup.classList.add("hidden");
         alert("⚔️ You faced the dungeon! XP reward coming soon...");
-        // Optional: Add XP bonus logic
+        // Optional: Add XP bonus logic here
       };
     }
 
