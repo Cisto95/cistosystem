@@ -285,3 +285,8 @@ input[type="checkbox"] {
     padding: 12px;
   }
 }
+/* === Equipped Item Style === */
+.item.equipped {
+  border: 2px solid #00ff99;
+  box-shadow: 0 0 10px #00ff99aa;
+}
