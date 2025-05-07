@@ -2,10 +2,12 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Penalties</title>
+  <title>Penalties | Cisto System</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body id="penalties">
+
+  <!-- Navigation -->
   <nav>
     <a href="index.html">🏠 Home</a> |
     <a href="stats.html">📊 Stats</a> |
@@ -19,29 +21,31 @@
 
   <hr>
 
-  <h1>⚠️ Penalties Activated</h1>
-  <ul>
-    <li>🚫 No Netflix</li>
-    <li>🚫 No social media</li>
-    <li>🚫 No music</li>
-    <li>🕶️ Shadowban mode: silence + grind</li>
-  </ul>
-  <p>💀 You failed a quest today. Redemption starts now.</p>
+  <div class="container">
+    <h1 class="glow">⚠️ Penalty System</h1>
 
-  <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const penalty = localStorage.getItem("penaltyTriggered");
+    <p style="text-align:center; margin-bottom: 20px;">
+      If you miss any of your daily tasks or missions, apply one of these penalties below. Be your own judge.
+    </p>
 
-      if (penalty !== "true") {
-        document.body.innerHTML = `
-          <h1>🎉 All Clear!</h1>
-          <p>No penalties today. You're doing great!</p>
-          <a href="index.html">🔙 Back to Home</a>
-        `;
-      } else {
-        localStorage.removeItem("penaltyTriggered");
-      }
-    });
-  </script>
+    <ul class="mission-list">
+      <li>No social media for 24 hours 📵</li>
+      <li>Do 30 pushups immediately 💪</li>
+      <li>Cold shower the next morning 🥶</li>
+      <li>No Netflix or YouTube for 48 hours 📺🚫</li>
+      <li>Write 500 words about what went wrong ✍️</li>
+      <li>Wake up 1 hour earlier the next day ⏰</li>
+      <li>Donate $5 to a cause you don’t support 💸</li>
+      <li>No sugar/sweets for 3 days 🍭❌</li>
+      <li>Delete one game or app you waste time on 🎮</li>
+      <li>Public accountability post (private or public) 📢</li>
+    </ul>
+
+    <p style="text-align:center; margin-top: 20px;">
+      💥 Missed work = missed glory. Stay sharp, Monarch.
+    </p>
+  </div>
+
+  <script src="script.js"></script>
 </body>
 </html>
