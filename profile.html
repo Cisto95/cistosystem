@@ -4,6 +4,31 @@
   <meta charset="UTF-8">
   <title>Profile</title>
   <link rel="stylesheet" href="style.css">
+  <style>
+    .progress-bar {
+      width: 100%;
+      background-color: #1e2a38;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 10px;
+      box-shadow: 0 0 5px #00f2ff88;
+    }
+    .progress-bar-fill {
+      height: 20px;
+      background-color: #00f2ff;
+      width: 0%;
+      transition: width 0.4s ease;
+      text-align: center;
+      font-size: 0.8rem;
+      color: #0a0f1e;
+      font-weight: bold;
+    }
+    .rank-title {
+      font-size: 1.3rem;
+      color: #ffcc00;
+      text-shadow: 0 0 6px #ffaa00;
+    }
+  </style>
 </head>
 <body>
   <nav>
@@ -19,31 +44,43 @@
 
   <hr>
 
-  <div id="levelUpMessage" style="display:none; color:greenyellow; font-weight:bold;">
-    🎉 Level Up! Keep going!
+  <div id="levelUpMessage" style="display:none; color:#00ff99; font-weight:bold; text-align:center;">
+    🎉 You leveled up! A new title awaits...
   </div>
 
-  <h1>🧍 Cisto's Profile</h1>
+  <h1 class="glow">🧍 Cisto's Profile</h1>
   <p>Name: Cisto</p>
-  <p>Rank: Hunter</p>
+  <p class="rank-title" id="rankDisplay">Rank: Rookie</p>
   <p id="levelDisplay">Level: 1</p>
   <p id="xpDisplay">XP: 0</p>
+
+  <div class="progress-bar">
+    <div class="progress-bar-fill" id="xpProgress">0%</div>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const xp = parseInt(localStorage.getItem("xp")) || 0;
-      const level = Math.floor(xp / 50) + 1;
+      const level = Math.floor(xp / 100) + 1;
+      const xpThisLevel = xp % 100;
+      const progress = Math.min((xpThisLevel / 100) * 100, 100);
 
-      const levelDisplay = document.getElementById("levelDisplay");
-      const xpDisplay = document.getElementById("xpDisplay");
-      const levelUpMessage = document.getElementById("levelUpMessage");
+      const ranks = [
+        "Rookie", "Genin Rapper", "Hidden Sound Prodigy", "Freestyle Shinobi",
+        "Solo Busker", "Studio Summoner", "Sound Assassin", "Vocal Jinchuriki",
+        "Chart Breaker", "SS-Rank Headliner", "International Shadow Star", "Arena Slayer"
+      ];
+      const currentRank = ranks[Math.min(level - 1, ranks.length - 1)];
 
-      if (levelDisplay) levelDisplay.textContent = `Level: ${level}`;
-      if (xpDisplay) xpDisplay.textContent = `XP: ${xp}`;
+      document.getElementById("levelDisplay").textContent = `Level: ${level}`;
+      document.getElementById("xpDisplay").textContent = `XP: ${xp}`;
+      document.getElementById("rankDisplay").textContent = `Rank: ${currentRank}`;
+      document.getElementById("xpProgress").style.width = `${progress}%`;
+      document.getElementById("xpProgress").textContent = `${Math.floor(progress)}%`;
 
       const lastLevel = parseInt(localStorage.getItem("lastLevel")) || 0;
-      if (level > lastLevel && levelUpMessage) {
-        levelUpMessage.style.display = "block";
+      if (level > lastLevel) {
+        document.getElementById("levelUpMessage").style.display = "block";
         localStorage.setItem("lastLevel", level);
       }
     });
