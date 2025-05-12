@@ -26,37 +26,62 @@
 
     <ul class="mission-list">
       <!-- Branding & Visibility -->
-      <li><input type="checkbox"> Design a cover art for your next release 🎨 <span class="xp">(+10 XP)</span></li>
-      <li><input type="checkbox"> Film a teaser or trailer for a song 🎥 <span class="xp">(+15 XP)</span></li>
-      <li><input type="checkbox"> Create a Canva visual quote/lyric 🎬 <span class="xp">(+5 XP)</span></li>
-      <li><input type="checkbox"> Write/update your artist bio or EPK 📝 <span class="xp">(+25 XP)</span></li>
-      <li><input type="checkbox"> Upload lyrics to Spotify 🖋️ <span class="xp">(+5 XP)</span></li>
+      <li><label><input type="checkbox" data-xp="10"> Design a cover art for your next release 🎨</label></li>
+      <li><label><input type="checkbox" data-xp="15"> Film a teaser or trailer for a song 🎥</label></li>
+      <li><label><input type="checkbox" data-xp="5"> Create a Canva visual quote/lyric 🎬</label></li>
+      <li><label><input type="checkbox" data-xp="25"> Write/update your artist bio or EPK 📝</label></li>
+      <li><label><input type="checkbox" data-xp="5"> Upload lyrics to Spotify 🖋️</label></li>
 
       <!-- Engagement & Growth -->
-      <li><input type="checkbox"> Launch a fan poll or Q&A 📊 <span class="xp">(0 XP)</span></li>
-      <li><input type="checkbox"> Comment on 10 artists’ posts 💬 <span class="xp">(0 XP)</span></li>
-      <li><input type="checkbox"> Ask fans for feedback on music 💌 <span class="xp">(+5 XP)</span></li>
-      <li><input type="checkbox"> Send a fan newsletter/email 📨 <span class="xp">(+20 XP)</span></li>
-      <li><input type="checkbox"> Add your linktree/site to 3 platforms 🌐 <span class="xp">(0 XP)</span></li>
+      <li><label><input type="checkbox" data-xp="0"> Launch a fan poll or Q&A 📊</label></li>
+      <li><label><input type="checkbox" data-xp="0"> Comment on 10 artists’ posts 💬</label></li>
+      <li><label><input type="checkbox" data-xp="5"> Ask fans for feedback on music 💌</label></li>
+      <li><label><input type="checkbox" data-xp="20"> Send a fan newsletter/email 📨</label></li>
+      <li><label><input type="checkbox" data-xp="0"> Add your linktree/site to 3 platforms 🌐</label></li>
 
       <!-- Monetization & Business -->
-      <li><input type="checkbox"> Pitch a song for sync placement 🎬 <span class="xp">(+20 XP)</span></li>
-      <li><input type="checkbox"> Create merch idea or mockup 👕 <span class="xp">(+15 XP)</span></li>
-      <li><input type="checkbox"> Study a successful rollout 🎯 <span class="xp">(+5 XP)</span></li>
-      <li><input type="checkbox"> Email 3 playlist curators 📧 <span class="xp">(+30 XP)</span></li>
-      <li><input type="checkbox"> Sign up for new monetization tool 💸 <span class="xp">(+10 XP)</span></li>
-      <li><input type="checkbox"> Build a full press kit (EPK) 📂 <span class="xp">(+40 XP)</span></li>
+      <li><label><input type="checkbox" data-xp="20"> Pitch a song for sync placement 🎬</label></li>
+      <li><label><input type="checkbox" data-xp="15"> Create merch idea or mockup 👕</label></li>
+      <li><label><input type="checkbox" data-xp="5"> Study a successful rollout 🎯</label></li>
+      <li><label><input type="checkbox" data-xp="30"> Email 3 playlist curators 📧</label></li>
+      <li><label><input type="checkbox" data-xp="10"> Sign up for new monetization tool 💸</label></li>
+      <li><label><input type="checkbox" data-xp="40"> Build a full press kit (EPK) 📂</label></li>
 
       <!-- Content & Strategy -->
-      <li><input type="checkbox"> Plan a YouTube/IG campaign 📆 <span class="xp">(+15 XP)</span></li>
-      <li><input type="checkbox"> Lock in a release date/strategy 🚀 <span class="xp">(+20 XP)</span></li>
-      <li><input type="checkbox"> Share a post about your journey 📜 <span class="xp">(+10 XP)</span></li>
-      <li><input type="checkbox"> Ask 5 artists for features 🤝 <span class="xp">(+10 XP)</span></li>
+      <li><label><input type="checkbox" data-xp="15"> Plan a YouTube/IG campaign 📆</label></li>
+      <li><label><input type="checkbox" data-xp="20"> Lock in a release date/strategy 🚀</label></li>
+      <li><label><input type="checkbox" data-xp="10"> Share a post about your journey 📜</label></li>
+      <li><label><input type="checkbox" data-xp="10"> Ask 5 artists for features 🤝</label></li>
     </ul>
 
     <p style="text-align:center;">🎙️ Ready to rise — check off to level up!</p>
   </div>
 
-  <script src="script.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const checkboxes = document.querySelectorAll("input[type='checkbox']");
+      const completedMissions = JSON.parse(localStorage.getItem("completedMissions") || "[]");
+      let xp = parseInt(localStorage.getItem("xp")) || 0;
+
+      checkboxes.forEach((cb, index) => {
+        if (completedMissions.includes(index)) {
+          cb.checked = true;
+          cb.disabled = true;
+        }
+
+        cb.addEventListener("change", () => {
+          if (cb.checked) {
+            const xpValue = parseInt(cb.dataset.xp) || 0;
+            xp += xpValue;
+            localStorage.setItem("xp", xp);
+            completedMissions.push(index);
+            localStorage.setItem("completedMissions", JSON.stringify(completedMissions));
+            cb.disabled = true;
+          }
+        });
+      });
+    });
+  </script>
+
 </body>
 </html>
