@@ -25,41 +25,34 @@
     <h1 class="glow">🎯 Superstar Missions</h1>
 
     <ul class="mission-list">
-      <!-- Branding & Visibility -->
+      <!-- Main Missions -->
       <li><label><input type="checkbox" data-xp="10"> Design a cover art for your next release 🎨</label></li>
       <li><label><input type="checkbox" data-xp="15"> Film a teaser or trailer for a song 🎥</label></li>
       <li><label><input type="checkbox" data-xp="5"> Create a Canva visual quote/lyric 🎬</label></li>
       <li><label><input type="checkbox" data-xp="25"> Write/update your artist bio or EPK 📝</label></li>
       <li><label><input type="checkbox" data-xp="5"> Upload lyrics to Spotify 🖋️</label></li>
-
-      <!-- Engagement & Growth -->
-      <li><label><input type="checkbox" data-xp="0"> Launch a fan poll or Q&A 📊</label></li>
-      <li><label><input type="checkbox" data-xp="0"> Comment on 10 artists’ posts 💬</label></li>
-      <li><label><input type="checkbox" data-xp="5"> Ask fans for feedback on music 💌</label></li>
-      <li><label><input type="checkbox" data-xp="20"> Send a fan newsletter/email 📨</label></li>
-      <li><label><input type="checkbox" data-xp="0"> Add your linktree/site to 3 platforms 🌐</label></li>
-
-      <!-- Monetization & Business -->
-      <li><label><input type="checkbox" data-xp="20"> Pitch a song for sync placement 🎬</label></li>
-      <li><label><input type="checkbox" data-xp="15"> Create merch idea or mockup 👕</label></li>
-      <li><label><input type="checkbox" data-xp="5"> Study a successful rollout 🎯</label></li>
-      <li><label><input type="checkbox" data-xp="30"> Email 3 playlist curators 📧</label></li>
-      <li><label><input type="checkbox" data-xp="10"> Sign up for new monetization tool 💸</label></li>
-      <li><label><input type="checkbox" data-xp="40"> Build a full press kit (EPK) 📂</label></li>
-
-      <!-- Content & Strategy -->
-      <li><label><input type="checkbox" data-xp="15"> Plan a YouTube/IG campaign 📆</label></li>
-      <li><label><input type="checkbox" data-xp="20"> Lock in a release date/strategy 🚀</label></li>
-      <li><label><input type="checkbox" data-xp="10"> Share a post about your journey 📜</label></li>
-      <li><label><input type="checkbox" data-xp="10"> Ask 5 artists for features 🤝</label></li>
+      <!-- You can add more as needed -->
     </ul>
+
+    <h2 class="glow" style="margin-top: 40px;">💀 Dungeon Missions</h2>
+    <ul class="mission-list" id="dungeonMissions"></ul>
 
     <p style="text-align:center;">🎙️ Ready to rise — check off to level up!</p>
   </div>
 
+  <!-- Dungeon Pop-up -->
+  <div id="dungeonPopup" class="modal hidden">
+    <div class="modal-content">
+      <h2>💥 A hidden dungeon has appeared!</h2>
+      <p>Will you face it or ignore it?</p>
+      <button id="faceItBtn">⚔️ Face it</button>
+      <button id="ignoreBtn">🚪 Ignore</button>
+    </div>
+  </div>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
-      const checkboxes = document.querySelectorAll("input[type='checkbox']");
+      const checkboxes = document.querySelectorAll(".mission-list input[type='checkbox']");
       const completedMissions = JSON.parse(localStorage.getItem("completedMissions") || "[]");
       let xp = parseInt(localStorage.getItem("xp")) || 0;
 
@@ -70,16 +63,54 @@
         }
 
         cb.addEventListener("change", () => {
-          if (cb.checked) {
+          if (cb.checked && !completedMissions.includes(index)) {
             const xpValue = parseInt(cb.dataset.xp) || 0;
             xp += xpValue;
             localStorage.setItem("xp", xp);
+
             completedMissions.push(index);
             localStorage.setItem("completedMissions", JSON.stringify(completedMissions));
+
             cb.disabled = true;
+            alert(`✅ Mission complete! +${xpValue} XP`);
           }
         });
       });
+
+      // === Dungeon Pop-up Logic ===
+      setTimeout(() => {
+        const popup = document.getElementById("dungeonPopup");
+        if (!popup) return;
+        popup.classList.remove("hidden");
+
+        const faceBtn = document.getElementById("faceItBtn");
+        const ignoreBtn = document.getElementById("ignoreBtn");
+
+        faceBtn.onclick = () => {
+          popup.classList.add("hidden");
+          const dungeonMissions = [
+            { task: "Cold email 5 music supervisors 🎯", xp: 40 },
+            { task: "Create 3 short video ads for a track 📺", xp: 35 },
+            { task: "DM 10 fans and ask for feedback 💬", xp: 30 },
+            { task: "Build a 1-minute press pitch video 🎤", xp: 50 },
+            { task: "Land a feature on a blog or podcast 📰", xp: 45 }
+          ];
+
+          const chosen = dungeonMissions[Math.floor(Math.random() * dungeonMissions.length)];
+          const ul = document.getElementById("dungeonMissions");
+
+          const li = document.createElement("li");
+          li.innerHTML = `<label><input type="checkbox" data-xp="${chosen.xp}"> ${chosen.task}</label>`;
+          ul.appendChild(li);
+
+          alert("🔥 Dungeon mission added to your list!");
+        };
+
+        ignoreBtn.onclick = () => {
+          popup.classList.add("hidden");
+          alert("🚪 You ignored the dungeon. It vanished...");
+        };
+      }, Math.random() * 300000 + 60000); // 1–6 minutes
     });
   </script>
 
