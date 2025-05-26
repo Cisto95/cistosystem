@@ -188,6 +188,26 @@ input[type="checkbox"] {
   box-shadow: 0 0 12px #00f2ff;
 }
 
+/* === Equipped Item Style with Glow === */
+.item.equipped {
+  border: 2px solid #00ff99;
+  background-color: rgba(0, 255, 153, 0.08);
+  box-shadow: 0 0 10px #00ff99aa;
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0% {
+    box-shadow: 0 0 6px #00ff99aa;
+  }
+  50% {
+    box-shadow: 0 0 18px #00ff99;
+  }
+  100% {
+    box-shadow: 0 0 6px #00ff99aa;
+  }
+}
+
 /* === Skill Tree === */
 .skill-tree {
   display: flex;
@@ -284,9 +304,4 @@ input[type="checkbox"] {
     width: 100%;
     padding: 12px;
   }
-}
-/* === Equipped Item Style === */
-.item.equipped {
-  border: 2px solid #00ff99;
-  box-shadow: 0 0 10px #00ff99aa;
 }
