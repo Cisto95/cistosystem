@@ -1,6 +1,6 @@
 // ===== Helper: Calculate Level from XP =====
 function calculateLevel(xp) {
-  return Math.floor(xp / 50) + 1;
+  return Math.floor(xp / 100) + 1; // Now levels every 100 XP
 }
 
 // ===== Inventory Checker =====
@@ -106,6 +106,7 @@ function spawnDungeonEvent() {
       faceBtn.onclick = () => {
         popup.classList.add("hidden");
         alert("⚔️ You faced the dungeon! XP reward coming soon...");
+        // Add dungeon XP logic here if needed
       };
     }
 
@@ -118,17 +119,21 @@ function spawnDungeonEvent() {
   }, delay);
 }
 
-// ===== Inventory Equip Logic =====
+// ===== Inventory Equip Logic (multiple items) =====
 function setupInventoryPage() {
   const inventoryItems = document.querySelectorAll("#inventoryList li");
   const equipped = JSON.parse(localStorage.getItem("equippedItems") || "[]");
 
   inventoryItems.forEach(item => {
     const itemName = item.textContent.trim();
-    if (equipped.includes(itemName)) item.classList.add("equipped");
+
+    if (equipped.includes(itemName)) {
+      item.classList.add("equipped");
+    }
 
     item.addEventListener("click", () => {
       const index = equipped.indexOf(itemName);
+
       if (index > -1) {
         equipped.splice(index, 1);
         item.classList.remove("equipped");
@@ -136,6 +141,7 @@ function setupInventoryPage() {
         equipped.push(itemName);
         item.classList.add("equipped");
       }
+
       localStorage.setItem("equippedItems", JSON.stringify(equipped));
     });
   });
@@ -148,5 +154,5 @@ document.addEventListener("DOMContentLoaded", () => {
   schedulePenaltyCheck();
   scheduleAutoReset();
   spawnDungeonEvent();
-  setupInventoryPage(); // ✅ Only runs if inventory page exists
+  setupInventoryPage();
 });
