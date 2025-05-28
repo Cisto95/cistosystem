@@ -1,6 +1,6 @@
 // ===== Helper: Calculate Level from XP =====
 function calculateLevel(xp) {
-  return Math.floor(xp / 100) + 1; // Now levels every 100 XP
+  return Math.floor(xp / 100) + 1;
 }
 
 // ===== Inventory Checker =====
@@ -28,7 +28,7 @@ function updateProfile() {
   }
 }
 
-// ===== Daily Quest Checkbox Setup with Sound & XP + Save State =====
+// ===== Daily/Mission Checkboxes with XP and Save State =====
 function setupCheckboxes() {
   const checkboxes = document.querySelectorAll("input[type='checkbox']");
   const savedStates = JSON.parse(localStorage.getItem("checkboxStates") || "{}");
@@ -42,8 +42,11 @@ function setupCheckboxes() {
 
       if (checkbox.checked) {
         let xp = parseInt(localStorage.getItem("xp")) || 0;
-        xp += 5;
+        const xpFromData = parseInt(checkbox.dataset.xp) || 5;
+        xp += xpFromData;
+
         if (hasItem("Sword of Focus")) xp += 2;
+
         localStorage.setItem("xp", xp);
         updateProfile();
 
@@ -90,7 +93,7 @@ function scheduleAutoReset() {
 
 // ===== Random Dungeon Pop-up with Buttons =====
 function spawnDungeonEvent() {
-  const delay = Math.random() * 600000 + 60000;
+  const delay = Math.random() * 600000 + 60000; // 1–11 minutes
   setTimeout(() => {
     const popup = document.getElementById("dungeonPopup");
     if (!popup) return;
@@ -106,7 +109,7 @@ function spawnDungeonEvent() {
       faceBtn.onclick = () => {
         popup.classList.add("hidden");
         alert("⚔️ You faced the dungeon! XP reward coming soon...");
-        // Add dungeon XP logic here if needed
+        // You can add specific dungeon mission logic here
       };
     }
 
@@ -119,7 +122,7 @@ function spawnDungeonEvent() {
   }, delay);
 }
 
-// ===== Inventory Equip Logic (multiple items) =====
+// ===== Inventory Equip Logic (Multiple Items Allowed) =====
 function setupInventoryPage() {
   const inventoryItems = document.querySelectorAll("#inventoryList li");
   const equipped = JSON.parse(localStorage.getItem("equippedItems") || "[]");
