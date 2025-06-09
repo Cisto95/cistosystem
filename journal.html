@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>📝 Journal | Cisto System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <nav>
+    <a href="index.html">🏠 Home</a> |
+    <a href="stats.html">📊 Stats</a> |
+    <a href="daily.html">📅 Daily</a> |
+    <a href="missions.html">🎯 Missions</a> |
+    <a href="inventory.html">🎒 Inventory</a> |
+    <a href="rewards.html">🎁 Rewards</a> |
+    <a href="penalties.html">⚠️ Penalties</a> |
+    <a href="profile.html">🧍 Profile</a> |
+    <a href="journal.html">📝 Journal</a>
+  </nav>
+
+  <hr>
+
+  <div class="container">
+    <h1 class="glow">📝 Daily Journal</h1>
+    <p>Write your top goals or reflections for today:</p>
+
+    <textarea id="journalEntry" rows="8" style="width:100%; max-width:600px;"></textarea>
+    <br><br>
+    <button onclick="saveJournal()">💾 Save Entry</button>
+    <p id="savedMsg" style="color:lime; display:none;">Saved ✅</p>
+
+    <hr>
+
+    <h3>Your Last Entry:</h3>
+    <div id="lastEntry" style="white-space: pre-wrap; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px;"></div>
+  </div>
+
+  <script>
+    function saveJournal() {
+      const entry = document.getElementById("journalEntry").value.trim();
+      if (entry) {
+        localStorage.setItem("dailyJournal", entry);
+        document.getElementById("savedMsg").style.display = "block";
+        document.getElementById("lastEntry").textContent = entry;
+        setTimeout(() => {
+          document.getElementById("savedMsg").style.display = "none";
+        }, 2000);
+      }
+    }
+
+    // Load last entry
+    document.addEventListener("DOMContentLoaded", () => {
+      const last = localStorage.getItem("dailyJournal");
+      if (last) {
+        document.getElementById("lastEntry").textContent = last;
+      }
+    });
+  </script>
+</body>
+</html>
